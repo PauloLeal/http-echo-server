@@ -40,6 +40,12 @@ func echoHandler(ctx iris.Context) {
 		er.Headers[strings.ToLower(k)] = ctx.GetHeader(k)
 	}
 
+	b, _ := json.MarshalIndent(er, "", "  ")
+
+	fmt.Printf("Method: %s\nPath: %s", er.Method, er.Path)
+	fmt.Println(string(b))
+	fmt.Println("==========================")
+
 	ctx.StatusCode(200)
 	ctx.JSON(er)
 }
